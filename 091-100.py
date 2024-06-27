@@ -9,6 +9,12 @@ Created on Thu Jun 20 10:13:25 2024
 import time
 import numpy as np
 
+#%%
+
+#096
+
+t0 = time.time()
+
 class Board:
     def __init__(self, puzzle):
         self.array = np.fromiter(''.join(filter(str.isdigit, puzzle)), dtype=np.uint8).reshape((9,9))
@@ -64,17 +70,16 @@ class Board:
     def solve(self):
         while np.count_nonzero(self.array == 0):
             self.move()
-
-if __name__ == '__main__':
-    t0 = time.time()
-    string_set = open("p096_sudoku.txt").read()
-    puzzles = string_set.split('Grid')
-    puzzles = [x[4:] for x in puzzles[1:]]
-    total = 0
     
-    for puzzle in puzzles:
-        b = Board(puzzle)
-        b.solve()
-        total += b.array[0,2] + 10 * b.array[0,1] + 100 * b.array[0,0]
-    print(f'096: {total}')
-    print(f'Time (s): {time.time()-t0}')
+string_set = open("p096_sudoku.txt").read()
+puzzles = string_set.split('Grid')
+puzzles = [x[4:] for x in puzzles[1:]]
+total = 0
+
+for puzzle in puzzles:
+    b = Board(puzzle)
+    b.solve()
+    total += b.array[0,2] + 10 * b.array[0,1] + 100 * b.array[0,0]
+    
+print(f'096: {total}')
+print(f'Time (s): {time.time()-t0}')

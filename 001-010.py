@@ -9,19 +9,26 @@ Created on Sun Jun 23 17:31:11 2024
 import numpy as np
 import time
 
+#%%
+
 #001
 
 t0 = time.time()
+
 total = 0
 for i in range(1000):
     if i % 3 == 0 or i % 5 == 0:
         total += i
+        
 print(f'001: {total}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #002
 
 t0 = time.time()
+
 total = 2
 fibo = [1, 2]
 for fib in fibo:
@@ -31,8 +38,11 @@ for fib in fibo:
     fibo.append(new_fibo)
     if new_fibo % 2 == 0:
         total += new_fibo
+        
 print(f'002: {total}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #003
 
@@ -43,12 +53,16 @@ for i in range(3, number//2, 2):
         number //= i
         if number == 1:
             break
+        
 print(f'003: {i}')
 print(f'Time (s): {time.time()-t0}\n')
             
+#%%
+
 #004
 
 t0 = time.time()
+
 record = 1
 nums = np.arange(100, 1000)
 matrix = (nums[:,None] * nums[None,:] * np.tri(900, dtype=np.int64)).flatten()
@@ -57,12 +71,16 @@ for i in matrix:
         string = str(i)
         if string == string[::-1]:
             record = int(string)
+            
 print(f'004: {record}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #005
 
 t0 = time.time()
+
 total = []
 for i in range(20, 2, -1):
     factors = []
@@ -83,20 +101,28 @@ for x in range(20):
         if numy > record:
             record = numy
     number *= x**record
+    
 print(f'005: {number}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #006
 
 t0 = time.time()
+
 numbers = np.arange(1, 101)
 diff = numbers.sum()**2 - (numbers**2).sum()
+
 print(f'006: {diff}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #007
 
 t0 = time.time()
+
 number = 0
 erato = np.arange(2, 200_000)
 for i, p in enumerate(erato):
@@ -105,12 +131,16 @@ for i, p in enumerate(erato):
         erato[i+p::p] = 0
         if number == 10_001:
             break
+        
 print(f'010: {p}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #008 
 
 t0 = time.time()
+
 number = """73167176531330624919225119674426574742355349194934
             96983520312774506326239578318016984801869478851843
             85861560789112949495459501737958331952853208805511
@@ -140,12 +170,16 @@ for i, x in enumerate(number[:-length+1]):
         test *= int(number[i+j+1])
     if test > biggest:
         biggest = test
+        
 print(f'008: {biggest}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #009
 
 t0 = time.time()
+
 for b in range(2, 995):
     for a in range(1, b):
         c = 1000 - a - b
@@ -156,11 +190,15 @@ for b in range(2, 995):
 print(f'009: {prod}')
 print(f'Time (s): {time.time()-t0}\n')
 
+#%%
+
 #010
 
 t0 = time.time()
+
 erato = np.arange(2, 2_000_000)
 for i, p in enumerate(erato):
     if p: erato[i+p::p] = 0
+    
 print(f'010: {np.sum(erato)}')
 print(f'Time (s): {time.time()-t0}\n')

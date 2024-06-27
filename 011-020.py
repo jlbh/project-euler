@@ -10,9 +10,12 @@ import numpy as np
 import time
 import math
 
+#%%
+
 #011
 
 t0 = time.time()
+
 grid = np.fromstring("""08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
                         49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
                         81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -41,14 +44,18 @@ for i in range(3):
     prods[1] *= np.roll(grid, i+1, axis=1)
     prods[2] *= np.roll(grid, i+1, axis=(0,1))
     prods[3] *= np.roll(grid, (i+1,-i-1), axis=(0,1))
+    
 print(f'011: {np.max(prods)}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #012
 
 t0 = time.time()
+
 tria = 6
-for i in range(4, 1000000000):
+for i in range(4, 1_000_000_000):
     divs = 2
     nums = np.arange(2, int(np.sqrt(tria))+1)
     array = tria % nums
@@ -56,12 +63,16 @@ for i in range(4, 1000000000):
     if divs > 500:
         break
     tria += i
+    
 print(f'012: {tria}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #013
 
 t0 = time.time()
+
 number = """37107287533902102798797998220837590246510135740250
             46376937677490009712648124896970078050417018260538
             74324986199524741059474233309513058123726617309629
@@ -164,12 +175,16 @@ number = """37107287533902102798797998220837590246510135740250
             53503534226472524250874054075591789781264330331690""".replace(' ', '')
         
 array = np.fromstring(number, sep='\n')
+
 print(f'013: {int(np.sum(array) * 1e-42)}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #014
 
 t0 = time.time()
+
 lengths = np.empty((1_000_000))
 lengths[0] = 1
 for num in range(2, 1_000_001):
@@ -181,31 +196,43 @@ for num in range(2, 1_000_001):
         length += 1
     length += lengths[num-1] - 1
     lengths[start-1] = length
+    
 print(f'014: {np.argmax(lengths)+1}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #015
 
 t0 = time.time()
+
 k = 20
 n = 2*k
 p = math.comb(n, k)
+
 print(f'015: {p}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #016
 
 t0 = time.time()
+
 digits = list(str(2**1_000))
 total = 0
 for i in digits:
     total += int(i)
+    
 print(f'016: {total}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #017
 
 t0 = time.time()
+
 numbers = [['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
            ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'],
            ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'],
@@ -246,12 +273,16 @@ def say(number):
 total = ''
 for i in range(1,1_001): 
     total += say(str(i))
+    
 print(f'017: {len(total)}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #018
 
 t0 = time.time()
+
 triangle =   """75
                 95 64
                 17 47 82
@@ -281,12 +312,16 @@ for i in range(2, num_rows+1):
 for x in range(num_rows-1, 0, -1):
     for y in range(x):
         array[x-1][y] += max(array[x][y], array[x][y+1])
+        
 print(f'018: {array[0][0]}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #019
 
 t0 = time.time()
+
 d, m, y, leap = 1, 9, 1901, False
 sundaylist = [[d, m, y]]
 while y < 2001:
@@ -324,15 +359,20 @@ while y < 2001:
                     else:
                         leap = False
         if d == 1: sundaylist.append([d, m, y])
+        
 print(f'019: {len(sundaylist)}')
 print(f'Time (s): {time.time()-t0}\n')
+
+#%%
 
 #020
 
 t0 = time.time()
+
 number = str(math.factorial(100))
 total = 0
 for x in number:
     total += int(x)
+    
 print(f'020: {total}')
 print(f'Time (s): {time.time()-t0}\n')

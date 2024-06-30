@@ -250,3 +250,5 @@ for i in range(2, (n+1) * 9**n):
         
 print(f'030: {summa}')
 print(f'Time (s): {time.time()-t0}\n')
+
+sys.setrecursionlimit(1_000)

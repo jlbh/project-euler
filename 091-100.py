@@ -8,6 +8,18 @@ Created on Thu Jun 20 10:13:25 2024
 
 import time
 import numpy as np
+import math
+
+#%%
+
+#094
+
+t0 = time.time()
+
+
+
+print(f'094: {summa}')
+print(f'Time (s): {time.time()-t0}')
 
 #%%
 
@@ -33,21 +45,21 @@ class Board:
             choice = set(range(10)) - (set(row) | set(col) | set(box))
             entropy = len(choice)
             self.entropies[tuple(i)] = entropy
-            
+
             if entropy == 0:
                 self.array = np.copy(self.save.pop())
                 return
             if entropy == 1:
                 self.array[tuple(i)] = choice.pop()
                 return
-            if entropy == 2: 
+            if entropy == 2:
                 choices.append(choice)
                 twos.append(i)
-                
+
         record = 0
         holder = None
         where = None
-        
+
         for n, i in enumerate(twos):
             count = 0
             for j in twos:
@@ -57,20 +69,20 @@ class Board:
                     count += 1
                 elif i[0] == j[0] or i[1] == j[1]:
                     count +=1
-            if count >= record: 
+            if count >= record:
                 holder = i
                 where = n
                 record = count
-        
+
         save = np.copy(self.array)
         save[tuple(holder)] = choices[where].pop()
         self.array[tuple(holder)] = choices[where].pop()
         self.save.append(save)
-    
+
     def solve(self):
         while np.count_nonzero(self.array == 0):
             self.move()
-    
+
 string_set = open("p096_sudoku.txt").read()
 puzzles = string_set.split('Grid')
 puzzles = [x[4:] for x in puzzles[1:]]
@@ -80,6 +92,6 @@ for puzzle in puzzles:
     b = Board(puzzle)
     b.solve()
     total += b.array[0,2] + 10 * b.array[0,1] + 100 * b.array[0,0]
-    
+
 print(f'096: {total}')
 print(f'Time (s): {time.time()-t0}')
